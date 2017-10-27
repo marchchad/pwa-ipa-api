@@ -8,13 +8,13 @@
       <div class="mdl-card__supporting-text">
         <div class="mdl-grid">
           <div class="mdl-cell mdl-cell--12-col">
-            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label is-upgraded is-dirty">
-              <input id="username" v-model="username" type="text" class="mdl-textfield__input"/>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+              <input id="username" v-model="username" type="text" class="mdl-textfield__input" autofocus/>
               <label for="username" class="mdl-textfield__label">User name</label>
             </div>
           </div>
           <div class="mdl-cell mdl-cell--12-col">
-            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label is-upgraded is-dirty">
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
               <input id="password" type="password" v-model="password" class="mdl-textfield__input"/>
               <label for="password" class="mdl-textfield__label">Password</label>
             </div>
@@ -22,9 +22,9 @@
         </div>
       </div>
       <div class="mdl-card__actions mdl-card--border">
-        <a @click.prevent="login" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
+        <button type="submit" @click.prevent="login" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
           Login
-        </a>
+        </button>
       </div>
     </div>
   </form>
@@ -32,6 +32,7 @@
 
 <script>
   import auth from '../auth';
+  import router from '../router';
 
   export default {
     data () {
@@ -46,7 +47,11 @@
           username: this.username,
           password: this.password
         };
-        auth.login(this, credentials, { name: 'home' });
+        if (navigator.onLine && !auth.user.authenticated) {
+          auth.login(this, credentials, { name: 'kegs' });
+        } else if (auth.user.authenticated) {
+          router.push({ name: 'kegs' });
+        }
       }
     }
   };
@@ -70,7 +75,7 @@
     z-index: 4;
   }
 
-  .mdl-card__actions a{
+  .mdl-card__actions button{
     float: right;
   }
 </style>

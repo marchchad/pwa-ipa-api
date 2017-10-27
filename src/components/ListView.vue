@@ -39,9 +39,6 @@
         this.$router.push({name: 'kegdetail', params: {id: id}});
       },
       getKegs () {
-        if (!auth.user.authenticated) {
-          return;
-        }
         if (navigator.onLine) {
           this.$http.get('http://localhost:8000/kegs/', {
             // Attach the JWT header
@@ -57,13 +54,11 @@
                 volume: _keg['volume'],
                 created_on: _keg['created_on']
               };
-              return kegs;
             }, {});
             this.saveKegsToCache();
-            return this.kegs;
           });
         } else {
-          return this.kegs;
+          this.kegs = JSON.parse(localStorage.getItem('kegs'));
         }
       },
       saveKegsToCache () {

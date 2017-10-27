@@ -144,6 +144,13 @@
                   </li>
                   <li class="mdl-list__item mdl-list__item--two-line">
                     <span class="mdl-list__item-primary-content">
+                      <span>ESLint</span>
+                      <span class="mdl-list__item-sub-title">A frustratingly helpful utility to enforce code style standards</span>
+                    </span>
+                    <a class="mdl-list__item-secondary-action" href="https://eslint.org/" target="_blank"><i class="material-icons">link</i></a>
+                  </li>
+                  <li class="mdl-list__item mdl-list__item--two-line">
+                    <span class="mdl-list__item-primary-content">
                       <span>Babel</span>
                       <span class="mdl-list__item-sub-title">JavaScript Transpiler</span>
                     </span>
@@ -180,6 +187,32 @@
             </div>
           </div>
         </section>
+        <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
+          <div class="mdl-card mdl-cell mdl-cell--12-col">
+            <div class="mdl-card__title">
+              <h2 class="mdl-card__title-text">Next Steps</h2>
+            </div>
+            <hr/>
+            <div class="mdl-card__supporting-text mdl-grid mdl-grid--no-spacing">
+              <div class="mdl-cell mdl-cell--1-col mdl-cell--hide-phone"></div>
+              <div class="section__text mdl-cell mdl-cell--10-col-desktop mdl-cell--6-col-tablet mdl-cell--4-col-phone">
+                <h4>Full Functionality - Offline</h4>
+                <p>
+                  We can leverage localStorage to store user requests to add, edit, or delete data stored in the api. We can store these
+                  requests and check when the user comes back online at a later time and execute their requests behind the scenes for them.
+                </p>
+                <h4>Device Integration</h4>
+                <p>
+                  Chrome has an API called <strong>Image Capture</strong> that allows us to discover and use device media, such as cameras.
+                  <a href="https://developers.google.com/web/updates/2016/12/imagecapture" target="_blank">Here</a> is a blog about utilizing this API
+                  to discover and choose devices. This means that when a user "installs" our PWA on their device, we can
+                  provide an integration for them to capture a picture offline and our app can post it to the API later.
+                </p>
+              </div>
+              <div class="mdl-cell mdl-cell--1-col mdl-cell--hide-phone"></div>
+            </div>
+          </div>
+        </section>
       </div>
       <div class="mdl-cell mdl-cell--2-col">
       </div>
@@ -189,17 +222,6 @@
     </router-link>
   </div>
 </template>
-
-<script>
-  export default {
-    data () {
-      return {
-      };
-    },
-    methods: {
-    }
-  };
-</script>
 
 <style scoped>
   .add-keg-button {
