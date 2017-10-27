@@ -1,9 +1,9 @@
 <template>
   <div>
     <div class="mdl-grid">
-      <div class="mdl-cell mdl-cell--3-col mdl-cell mdl-cell--1-col-tablet mdl-cell--hide-phone"></div>
+      <div class="mdl-cell mdl-cell--3-col-desktop mdl-cell--1-col-tablet mdl-cell--hide-phone"></div>
       <div class="mdl-cell mdl-cell--6-col mdl-cell--4-col-phone">
-        <div v-for="(keg, id) in getKegs()" class="image-card" @click="displayDetails(id)">
+        <div v-for="keg in kegs" class="image-card" @click="displayDetails(keg.id)">
           <div class="image-card__picture">
             <img :src="keg.image" />
           </div>
@@ -13,6 +13,7 @@
           </div>
         </div>
       </div>
+      <div class="mdl-cell mdl-cell--3-col-desktop mdl-cell--1-col-tablet mdl-cell--hide-phone"></div>
     </div>
     <router-link class="add-keg-button mdl-button mdl-js-button mdl-button--fab mdl-button--colored mdl-js-ripple-effect" to="/keg">
       <i class="material-icons">add</i>
@@ -30,6 +31,9 @@
         kegs: []
       };
     },
+    mounted () {
+      this.getKegs();
+    },
     methods: {
       displayDetails (id) {
         this.$router.push({name: 'kegdetail', params: {id: id}});
@@ -39,7 +43,10 @@
           return;
         }
         if (navigator.onLine) {
-          this.$http.get('http://localhost:8000/kegs/').then(resp => {
+          this.$http.get('http://localhost:8000/kegs/', {
+            // Attach the JWT header
+            headers: auth.getAuthHeader()
+          }).then(resp => {
             let kegs = resp.body.results;
             let image = 'https://cdn.dribbble.com/users/50008/screenshots/1641763/party1-_1x.jpg';
             this.kegs = reduce(kegs, (kegs, _keg) => {
@@ -54,9 +61,6 @@
             }, {});
             this.saveKegsToCache();
             return this.kegs;
-          }, {
-            // Attach the JWT header
-            headers: auth.getAuthHeader()
           });
         } else {
           return this.kegs;

@@ -33,7 +33,7 @@
       <a id="save" @click.prevent="save" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect">
         <i class="material-icons">save</i> Save
       </a>
-      <router-link class="mdl-button mdl-js-button mdl-button--accent mdl-button--raised mdl-js-ripple-effect" to="/">
+      <router-link class="mdl-button mdl-js-button mdl-button--accent mdl-button--raised mdl-js-ripple-effect" to="/kegs">
         Back
       </router-link>
     </div>
@@ -56,7 +56,7 @@
       save () {
         let data = { name: this.keg.name, volume: this.keg.volume };
         this.$http.put(POST_URL + this.keg.id + '/', data).then(resp => {
-          router.push({ name: 'home' });
+          router.push({ name: 'kegs' });
         }, {
           // Attach the JWT header
           headers: auth.getAuthHeader()

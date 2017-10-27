@@ -22,7 +22,7 @@ new Vue({
 });
 
 Vue.http.headers.common['Authorization'] = auth.getAuthHeader()['Authorization'];
-
-if (auth.checkAuth()) {
+auth.checkAuth();
+if (auth.user.authenticated) {
   router.push({ name: 'home' });
 }

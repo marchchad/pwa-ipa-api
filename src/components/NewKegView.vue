@@ -29,7 +29,7 @@
         <a id="add" @click.prevent="postKeg" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
           Add Keg
         </a>
-        <router-link class="mdl-button mdl-js-button mdl-button--accent mdl-button--raised mdl-js-ripple-effect" to="/">
+        <router-link class="mdl-button mdl-js-button mdl-button--accent mdl-button--raised mdl-js-ripple-effect" to="/kegs">
           Back
         </router-link>
       </div>
@@ -53,7 +53,7 @@
             'name': this.name,
             'volume': this.volume
           })
-          .then(this.$router.push({ name: 'home' }));
+          .then(this.$router.push({ name: 'kegs' }));
       },
       uploadImage () {
         document.getElementById('image').value = this.$el['kegPic'].files[0].name;
