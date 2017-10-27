@@ -213,6 +213,26 @@
             </div>
           </div>
         </section>
+        <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
+          <div class="mdl-card mdl-cell mdl-cell--12-col">
+            <div class="mdl-card__title">
+              <h2 class="mdl-card__title-text">Credit</h2>
+            </div>
+            <hr/>
+            <div class="mdl-card__supporting-text mdl-grid mdl-grid--no-spacing">
+              <div class="mdl-cell mdl-cell--1-col mdl-cell--hide-phone"></div>
+              <div class="section__text mdl-cell mdl-cell--10-col-desktop mdl-cell--6-col-tablet mdl-cell--4-col-phone">
+
+                <p>
+                  Credit to Charles Bochet and his super helpful
+                  <a href="https://blog.sicara.com/a-progressive-web-application-with-vue-js-webpack-material-design-part-1-c243e2e6e402" target="_blank">blog series</a>
+                  on this topic.
+                </p>
+              </div>
+              <div class="mdl-cell mdl-cell--1-col mdl-cell--hide-phone"></div>
+            </div>
+          </div>
+        </section>
       </div>
       <div class="mdl-cell mdl-cell--2-col">
       </div>
