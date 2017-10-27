@@ -19,11 +19,14 @@
           </div>
         </div>
         <div class="mdl-cell mdl-cell--12-col">
+          <div>Image Preview</div>
+          <img :src="this.keg.image" width="100%" id="image_preview" />
+        </div>
+        <div class="mdl-cell mdl-cell--12-col">
           <div class="mdl-textfield mdl-js-textfield mdl-textfield--file">
-            <img :src="this.keg.image" width="100%" />
-            <input v-model="keg.image" class="mdl-textfield__input" placeholder="MyKegPic.png" type="text" id="image" readonly/>
+            <input v-model="keg.image" class="mdl-textfield__input" placeholder="MyKegPic.png" type="text" id="image"/>
             <div class="mdl-button mdl-button--primary mdl-button--icon mdl-button--file">
-              <i class="material-icons">attach_file</i><input type="file" id="kegPic">
+              <i class="material-icons">attach_file</i><input type="file" id="kegPic" v-on:change="uploadImage" />
             </div>
           </div>
         </div>
@@ -49,6 +52,7 @@
   export default {
     data () {
       return {
+        'image': null,
         'keg': JSON.parse(localStorage.getItem('kegs'))[this.$route.params.id]
       };
     },
@@ -61,6 +65,19 @@
           // Attach the JWT header
           headers: auth.getAuthHeader()
         });
+      },
+      uploadImage (e) {
+        let input = e.target;
+        if (input.files && input.files[0]) {
+          let reader = new FileReader();
+
+          reader.onload = function (e) {
+            document.getElementById('image_preview').src = e.target.result;
+          };
+
+          reader.readAsDataURL(e.target.files[0]);
+          this.keg.image = e.target.files[0].name;
+        }
       }
     }
   };
@@ -69,12 +86,31 @@
 <style scoped>
 
   .mdl-card{
-    margin: auto;
+    margin: auto auto 50px;
     top: 50px;
-    width: 50%;
+    width: 75%;
   }
 
   .mdl-card__actions #save {
     float: right;
+  }
+
+  .mdl-button--file input {
+    cursor: pointer;
+    height: 100%;
+    right: 0;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    width: 300px;
+    z-index: 4;
+  }
+
+  .mdl-textfield--file .mdl-textfield__input {
+    box-sizing: border-box;
+    width: calc(100% - 32px);
+  }
+  .mdl-textfield--file .mdl-button--file {
+    right: 0;
   }
 </style>

@@ -46,14 +46,15 @@
           }).then(resp => {
             let kegs = resp.body.results;
             let image = 'https://cdn.dribbble.com/users/50008/screenshots/1641763/party1-_1x.jpg';
-            this.kegs = reduce(kegs, (kegs, _keg) => {
-              kegs[_keg['id']] = {
+            this.kegs = reduce(kegs, (_kegs, _keg) => {
+              _kegs[_keg['id']] = {
                 id: _keg['id'],
                 image: image,
                 name: _keg['name'],
                 volume: _keg['volume'],
                 created_on: _keg['created_on']
               };
+              return _kegs;
             }, {});
             this.saveKegsToCache();
           });
