@@ -5,7 +5,7 @@ import VueResource from 'vue-resource';
 // Import App modules
 import App from './App';
 import router from './router';
-import firebase from './service/firebase';
+import auth from './auth';
 
 Vue.config.productionTip = false;
 
@@ -15,10 +15,14 @@ Vue.use(Vuefire);
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
-  firebase: {
-    keg: firebase.database.ref('keg').orderByChild('created_at')
-  },
+  auth,
   router,
   template: '<App/>',
   components: { App }
 });
+
+Vue.http.headers.common['Authorization'] = auth.getAuthHeader()['Authorization'];
+
+if (auth.checkAuth()) {
+  router.push({ name: 'home' });
+}
