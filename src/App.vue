@@ -19,11 +19,17 @@
     <div class="mdl-layout__drawer">
       <span class="mdl-layout-title">{{ name }}</span>
       <nav class="mdl-navigation">
-        <router-link class="mdl-navigation__link" to="/" @click.native="hideMenu">Home</router-link>
-        <router-link class="mdl-navigation__link" to="/kegs" @click.native="hideMenu" v-if="user.authenticated">Kegs</router-link>
-        <router-link class="mdl-navigation__link" to="/keg" @click.native="hideMenu" v-if="user.authenticated">Create a Keg</router-link>
-        <router-link class="mdl-navigation__link" to="/login" v-if="!user.authenticated" @click.native="hideMenu">Login</router-link>
-        <router-link class="mdl-navigation__link" to="/logout" v-if="user.authenticated" @click.native="logout">Logout</router-link>
+        <router-link class="mdl-navigation__link" to="/" @click.native="hideMenu">
+          <i class="material-icons">home</i>Home</router-link>
+        <router-link class="mdl-navigation__link" to="/kegs" @click.native="hideMenu" v-if="user.authenticated">
+          <i class="material-icons">view_list</i>Kegs</router-link>
+        <router-link class="mdl-navigation__link" to="/keg" @click.native="hideMenu" v-if="user.authenticated">
+          <i class="material-icons">add</i>Create a Keg</router-link>
+        <router-link class="mdl-navigation__link" to="/login" v-if="!user.authenticated" @click.native="hideMenu">
+          <i class="material-icons">account_circle</i>Login</router-link>
+        <router-link class="mdl-navigation__link" to="/logout" v-if="user.authenticated" @click.native="logout">
+          <i class="material-icons">account_circle</i>Logout
+        </router-link>
       </nav>
     </div>
     <main class="mdl-layout__content">
@@ -71,4 +77,8 @@
 
   @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
   @import url('https://code.getmdl.io/1.2.1/material.blue-red.min.css');
+
+  i.material-icons{
+    margin-right: 15px;
+  }
 </style>
