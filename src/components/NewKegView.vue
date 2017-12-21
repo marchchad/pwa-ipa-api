@@ -12,7 +12,7 @@
           <div class="mdl-cell mdl-cell--12-col">
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label is-upgraded is-dirty">
               <input id="volume" v-model="volume" type="number" step="0.1" class="mdl-textfield__input"/>
-              <label for="name" class="mdl-textfield__label">Volume</label>
+              <label for="volume" class="mdl-textfield__label">Volume</label>
             </div>
           </div>
           <div class="mdl-cell mdl-cell--12-col">
@@ -53,7 +53,12 @@
             'name': this.name,
             'volume': this.volume
           })
-          .then(this.$router.push({ name: 'kegs' }));
+          .then(resp => {
+            console.log(resp);
+            this.$router.push({ name: 'kegs' });
+          }, err => {
+            console.error(err);
+          });
       },
       uploadImage () {
         document.getElementById('image').value = this.$el['kegPic'].files[0].name;

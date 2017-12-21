@@ -1,9 +1,10 @@
 // src/auth/index.js
 import router from '../router';
+import Vue from 'vue';
 
 // URL and endpoint constants
 const API_URL = 'http://localhost:8000/';
-const LOGIN_URL = API_URL + 'api-token-auth/';
+const LOGIN_URL = API_URL + 'api-auth-token/';
 const SIGNUP_URL = API_URL + 'users/';
 
 export default {
@@ -26,7 +27,7 @@ export default {
       }
     }, err => {
       console.error(err);
-      context.error = err;
+      context.error = 'An error occurred while logging in.';
     });
   },
 
@@ -68,6 +69,7 @@ export default {
   },
 
   _setToken (token) {
+    Vue.http.headers.common['Authorization'] = { 'Authorization': token };
     return localStorage.setItem('token', token);
   }
 

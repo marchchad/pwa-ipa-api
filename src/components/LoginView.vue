@@ -1,5 +1,5 @@
 <template>
-  <form>
+  <form v-on:change="error = ''">
     <div class="mdl-card mdl-shadow--6dp">
       <div class="mdl-card__title">
         <h2 class="mdl-card__title-text">Log In</h2>
@@ -18,6 +18,9 @@
               <input id="password" type="password" v-model="password" class="mdl-textfield__input"/>
               <label for="password" class="mdl-textfield__label">Password</label>
             </div>
+          </div>
+          <div class="mdl-cell mdl-cell--12-col">
+            <span class="error">{{ error }}</span>
           </div>
         </div>
       </div>
@@ -38,7 +41,8 @@
     data () {
       return {
         'password': null,
-        'username': null
+        'username': null,
+        'error': null
       };
     },
     methods: {
@@ -58,6 +62,10 @@
 </script>
 
 <style scoped>
+
+  .error{
+    color: red;
+  }
 
   .mdl-card{
     margin: auto;

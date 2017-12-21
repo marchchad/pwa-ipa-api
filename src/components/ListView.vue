@@ -22,7 +22,6 @@
 </template>
 
 <script>
-  import auth from '../auth';
   import { reduce } from 'lodash';
 
   export default {
@@ -40,10 +39,7 @@
       },
       getKegs () {
         if (navigator.onLine) {
-          this.$http.get('http://localhost:8000/kegs/', {
-            // Attach the JWT header
-            headers: auth.getAuthHeader()
-          }).then(resp => {
+          this.$http.get('http://localhost:8000/kegs/').then(resp => {
             let kegs = resp.body.results;
             let image = 'https://cdn.dribbble.com/users/50008/screenshots/1641763/party1-_1x.jpg';
             this.kegs = reduce(kegs, (_kegs, _keg) => {
